@@ -58,8 +58,14 @@ def element_wise_sum(input_list_1, input_list_2):
 #input parameters: input_dict
 
 # %%
+
+
 def dict_to_list(input_dict):
-    return input_dict.items()
+    output = []
+    for key,value in input_dict.items():
+        output.append((key,value))
+    return output    
+
 
 # %%
 #If all the functions are created convert this notebook into a .py file and push to your repo
