@@ -9,12 +9,9 @@
 
 
 def subset(input_list,start_index,end_index):
-    output = []
-    for i in range(len(input_list)):
-        if i >= start_index and i <= end_index:
-           output.append(input_list[i])
-        
+    output = input_list[start_index: end_index:]
     return output
+
 
 
 
@@ -26,10 +23,7 @@ def subset(input_list,start_index,end_index):
 
 # %%
 def every_nth(input_list,step_size):
-    output = []
-    for i in range(step_size-1,len(input_list),step_size):
-        output.append(input_list[i])
-            
+    output = input_list[0::step_size]
     return output
 
 # %%
@@ -98,7 +92,7 @@ def reverse_tuples(input_list):
 #input parameters: input_list
 
 # %%
-def remove_tuplicates(input_list):
+def remove_duplicates(input_list):
     output = []
     for item in input_list:
         if output.count(item) == 0:
