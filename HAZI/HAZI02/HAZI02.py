@@ -32,18 +32,19 @@ def compare_two_array(array1 : np.array, array2 : np.array) -> np.array:
     matching_indices = np.where(array1 == array2)[0]
     return matching_indices
 
-#print(compare_two_array(np.array([-7.1,8,10,9]),np.array([-7.1,-7,-7,-7] )))
+#print(compare_two_array(np.array([-7,8,10,9]),np.array([-7,-7,10,-7] )))
 
 # %%
 # Készíts egy olyan függvényt, ami vissza adja string-ként a megadott array dimenzióit:
-# Be: [[1,2,3], [4,5,6]]
+# Be: [[1,1,3],[1,2,3]]
 # Ki: "sor: 2, oszlop: 3, melyseg: 1"
 # get_array_shape()
 # 3D-vel még műküdnie kell!, 
 
 def get_array_shape(input_array : np.array) -> str:
     shape = input_array.shape 
-
+    if len(shape) == 0:
+        return "sor: 0, oszlop: 0, melyseg: 0"
     if len(shape) == 1:
         return f"sor: {shape[0]}, oszlop: 1, melyseg: 1"
     if len(shape) == 2:
@@ -51,7 +52,7 @@ def get_array_shape(input_array : np.array) -> str:
     else:
         return f"sor: {shape[0]}, oszlop: {shape[1]}, melyseg: {shape[2]}"
     
-#print(get_array_shape(np.array([[1,2,3], [4,5,6]])))
+#print(get_array_shape(np.array([[1,1,3],[1,2,3]])))
 
 # %%
 # Készíts egy olyan függvényt, aminek segítségével elő tudod állítani egy neurális hálózat tanításához szükséges pred-et egy numpy array-ből. 
@@ -76,8 +77,10 @@ def encode_Y(input_array : np.array, clnum : int) -> np.array:
 # Ki:  [1, 2, 0, 3]
 # decode_Y()
 def decode_Y(input_array : np.array) -> np.array:
-    indices = [np.nonzero(row)[0][0] for row in input_array]
-    return indices
+    #indices = [np.nonzero(row)[0][0] for row in input_array]
+    #return indices
+    ret = np.argmax(input_array, axis=1)
+    return ret
 
 #a = np.array([[0, 1, 0, 0],[0, 0, 1, 0],[1, 0, 0, 0],[0, 0, 0, 1]])
 
@@ -122,7 +125,7 @@ def replace_by_value(i_array : np.array, cond : int) -> np.array:
 
     return i_array
 
-#print(replace_by_value(np.array([-9]),-9))
+#print(replace_by_value(np.array([1, 2, 5, 0]),2))
 
 # %%
 # Készíts egy olyan függvényt, ami egy array értékeit összeszorozza és az eredményt visszaadja
