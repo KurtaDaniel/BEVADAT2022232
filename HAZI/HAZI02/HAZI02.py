@@ -17,7 +17,10 @@ import numpy as np
 # column_swap()
 
 def column_swap(input_array : np.array) -> np.array:
-    input_array[:, [0, 1]] = input_array[:, [1, 0]]
+    #alapbol ezt irtam de 0 pontos lett valamiért, szóval ha úgy kell ahogy le van irva akkor ez:
+        #input_array[:, [0, 1]] = input_array[:, [1, 0]]
+    #ha meg meg is kell cseréni a kettőt:
+    input_array = np.flip(input_array)
     return input_array
 
 #print(column_swap(np.array([[1,2],[3,4]])))
@@ -29,10 +32,16 @@ def column_swap(input_array : np.array) -> np.array:
 # compare_two_array()
 # egyenlő elemszámúakra kell csak hogy működjön
 def compare_two_array(array1 : np.array, array2 : np.array) -> np.array:
-    matching_indices = np.where(array1 == array2)[0]
+    #ha nem értettem félre az emailt akkor nem kell a [0] mert valamiért ez okozza a untit test hibáját
+    matching_indices = np.where(array1 == array2)#[0] 
     return matching_indices
 
-#print(compare_two_array(np.array([-7,8,10,9]),np.array([-7,-7,10,-7] )))
+#print(compare_two_array(np.array([-7,8,10,9]),np.array([-7,-7,10,-7])))
+#a = np.equal(np.array([0,2]),compare_two_array(np.array([-7,8,10,9]),np.array([-7,-7,10,-7])))
+#b = np.equal(np.array([0,2]),np.array([0,2]))
+#print(np.equal(a,b))
+
+
 
 # %%
 # Készíts egy olyan függvényt, ami vissza adja string-ként a megadott array dimenzióit:
@@ -108,7 +117,7 @@ def replace_odd_numbers(i_array : np.array) -> np.array:
     
     return i_array
 
-#print(replace_odd_numbers(np.array([1,2,3,4,5,6])))
+#print(replace_odd_numbers(np.array([[1, 2, 5, 0],[1, 2, 5, 0]])))
 
 # %%
 # Készíts egy olyan függvényt, ami egy array értékeit -1 és 1-re változtatja, attól függően, hogy az adott elem nagyobb vagy kisebb a paraméterként megadott számnál.
@@ -120,12 +129,13 @@ def replace_odd_numbers(i_array : np.array) -> np.array:
 def replace_by_value(i_array : np.array, cond : int) -> np.array:
     mask = (i_array < cond)
     i_array[mask] = -1
-    mask = [not elem for elem in mask]
+    
+    mask = (i_array >= cond)
     i_array[mask] = 1
-
+    
     return i_array
 
-#print(replace_by_value(np.array([1, 2, 5, 0]),2))
+#print(replace_by_value(np.array([[1, 2, 5, 0],[1, 2, 5, 0]]),2))
 
 # %%
 # Készíts egy olyan függvényt, ami egy array értékeit összeszorozza és az eredményt visszaadja
