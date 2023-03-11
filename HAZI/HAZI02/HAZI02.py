@@ -32,7 +32,7 @@ def compare_two_array(array1 : np.array, array2 : np.array) -> np.array:
     matching_indices = np.where(array1 == array2)[0]
     return matching_indices
 
-#print(compare_two_array(np.array([7,8,9,10]),np.array([9,8,7,10] )))
+#print(compare_two_array(np.array([-7.1,8,10,9]),np.array([-7.1,-7,-7,-7] )))
 
 # %%
 # Készíts egy olyan függvényt, ami vissza adja string-ként a megadott array dimenzióit:
@@ -46,12 +46,12 @@ def get_array_shape(input_array : np.array) -> str:
 
     if len(shape) == 1:
         return f"sor: {shape[0]}, oszlop: 1, melyseg: 1"
-    elif len(shape) == 2:
+    if len(shape) == 2:
         return f"sor: {shape[0]}, oszlop: {shape[1]}, melyseg: 1"
     else:
         return f"sor: {shape[0]}, oszlop: {shape[1]}, melyseg: {shape[2]}"
     
-#print(get_array_shape(np.array([1,2])))
+#print(get_array_shape(np.array([[1,2,3], [4,5,6]])))
 
 # %%
 # Készíts egy olyan függvényt, aminek segítségével elő tudod állítani egy neurális hálózat tanításához szükséges pred-et egy numpy array-ből. 
@@ -77,9 +77,9 @@ def encode_Y(input_array : np.array, clnum : int) -> np.array:
 # decode_Y()
 def decode_Y(input_array : np.array) -> np.array:
     indices = [np.nonzero(row)[0][0] for row in input_array]
-    print(indices)
+    return indices
 
-#a = np.array([[0, 0, 0, 1],[0, 0, 1, 0],[0, 1, 0, 0],[1, 0, 0, 0]])
+#a = np.array([[0, 1, 0, 0],[0, 0, 1, 0],[1, 0, 0, 0],[0, 0, 0, 1]])
 
 #print(decode_Y(a))
 
@@ -99,13 +99,13 @@ def eval_classification(i_items : list, i_prob : np.array) -> str:
 # Be: [1,2,3,4,5,6]
 # Ki: [-1,2,-1,4,-1,6]
 # replace_odd_numbers()
-def repalce_odd_numbers(i_array : np.array) -> np.array:
+def replace_odd_numbers(i_array : np.array) -> np.array:
     mask = (i_array % 2 == 1)
     i_array[mask] = -1
     
     return i_array
 
-#print(repalce_odd_numbers(np.array([1,2,3,4,5,6])))
+#print(replace_odd_numbers(np.array([1,2,3,4,5,6])))
 
 # %%
 # Készíts egy olyan függvényt, ami egy array értékeit -1 és 1-re változtatja, attól függően, hogy az adott elem nagyobb vagy kisebb a paraméterként megadott számnál.
@@ -113,6 +113,7 @@ def repalce_odd_numbers(i_array : np.array) -> np.array:
 # Be: [1, 2, 5, 0], 2
 # Ki: [-1, 1, 1, -1]
 # replace_by_value()
+
 def replace_by_value(i_array : np.array, cond : int) -> np.array:
     mask = (i_array < cond)
     i_array[mask] = -1
@@ -121,7 +122,7 @@ def replace_by_value(i_array : np.array, cond : int) -> np.array:
 
     return i_array
 
-#print(replace_by_value(np.array([1, 2, 5, 0]),2))
+#print(replace_by_value(np.array([-9]),-9))
 
 # %%
 # Készíts egy olyan függvényt, ami egy array értékeit összeszorozza és az eredményt visszaadja
@@ -194,9 +195,12 @@ def get_act_date() -> str:
 # sec_from_1970()
 def sec_from_1970() -> int:
     ret = np.datetime64("now","s") - np.datetime64("1970-01-01T00:02:00")
-    ret = str(ret)[:-8]
+    ret = str(ret)[:-7]
     return int(ret)
 
 #print(sec_from_1970())
-
+#print(np.datetime64("now","s") - np.datetime64("1970-01-01T00:02:00"))
+#ret = np.datetime64("now","s") - np.datetime64("1970-01-01T00:02:00")
+#ret = str(ret)[:-7]
+#print(int(ret))
 
