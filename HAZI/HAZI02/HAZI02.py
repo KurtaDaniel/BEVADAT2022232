@@ -17,10 +17,7 @@ import numpy as np
 # column_swap()
 
 def column_swap(input_array : np.array) -> np.array:
-    #alapbol ezt irtam de 0 pontos lett valamiért, szóval ha úgy kell ahogy le van irva akkor ez:
-        #input_array[:, [0, 1]] = input_array[:, [1, 0]]
-    #ha meg meg is kell cseréni a kettőt:
-    input_array = np.flip(input_array)
+    input_array = np.fliplr(input_array)
     return input_array
 
 #print(column_swap(np.array([[1,2],[3,4]])))
