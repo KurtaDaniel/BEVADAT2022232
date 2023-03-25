@@ -101,11 +101,11 @@ függvény neve: average_scores
 # %%
 def average_scores(df_data : pd.DataFrame) -> pd.DataFrame: #nem tudom hogy pontosan ez volt e feladat de én igy értettem
     new_df = df_data.copy()
-    avgscoreC = (new_df["math score"] + new_df["reading score"] + new_df["writing score"])/3
-    new_df["avaragescore"] = avgscoreC
-    return new_df.groupby(["parental level of education","race/ethnicity"])["avaragescore"].mean()
+    #avgscoreC = (new_df["math score"] + new_df["reading score"] + new_df["writing score"])/3
+    #new_df["avaragescore"] = avgscoreC
+    #return new_df.groupby(["parental level of education","race/ethnicity"])["avaragescore"].mean()
     
-    
+    return new_df.groupby(["parental level of education","race/ethnicity"])["math score","reading score","writing score"].mean()
 
 #print(average_scores(df))
 
