@@ -27,7 +27,7 @@ stats = {"country": ["Brazil", "Russia", "India", "China", "South Africa"],
        "area": [8.516, 17.10, 3.286, 9.597, 1.221],
        "population": [200.4, 143.5, 1252, 1357, 52.98] }
 
-#df = dict_to_dataframe(stats)
+df = dict_to_dataframe(stats)
 #print(df)
 
 # %%
@@ -45,7 +45,7 @@ def get_column(test_d : pd.core.series.Series , oszlop : str) -> pd. core.series
     new_df =test_d.copy()
     return new_df[oszlop]
 
-#get_column(df,"capital")
+get_column(df,"capital")
 
 # %%
 '''
@@ -138,9 +138,10 @@ def plot_area(test_df):
     ax.pie(new_df["area"],labels=new_df["country"],)
     ax.set_title("Area of Countries")
 
+    return fig
+
 
 
 #plot_area(df)
-
-
+#plt.show()
 
