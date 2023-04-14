@@ -66,7 +66,7 @@ class NJCleaner():
             else:
                 break
             """
-        #ret = ret.drop(columns=["scheduled_time","tmp"])    
+        ret = ret.drop(columns=["tmp"])    
         #print(ret["part_of_the_day"])
         return ret
         
