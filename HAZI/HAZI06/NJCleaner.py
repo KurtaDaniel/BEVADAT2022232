@@ -66,7 +66,7 @@ class NJCleaner():
             else:
                 break
             """
-        ret = ret.drop(columns=["scheduled_time","tmp"])    
+        #ret = ret.drop(columns=["scheduled_time","tmp"])    
         #print(ret["part_of_the_day"])
         return ret
         
@@ -94,5 +94,5 @@ class NJCleaner():
         self.save_first_60k(path)
         
 
-c = NJCleaner()
-c.prep_df()
+#c = NJCleaner()
+#c.prep_df()
