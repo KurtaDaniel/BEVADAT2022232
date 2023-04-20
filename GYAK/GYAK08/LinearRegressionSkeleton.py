@@ -46,7 +46,7 @@ class LinearRegression:
         #print(self.y_test)
 
         self.y_pred = self.m*X + self.c
-
+        return y_pred
 
         # Calculate the Mean Absolue Error
         #print("Mean Absolute Error:", np.mean(np.abs(y_pred - self.y_test)))
