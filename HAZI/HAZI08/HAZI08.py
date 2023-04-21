@@ -57,14 +57,14 @@ függvény neve: linear_train_data
 
 # %%
 def linear_train_data(iris):
-    iris = pd.DataFrame(iris.data, columns=iris.feature_names)
     X = iris[['sepal width (cm)','petal length (cm)','petal width (cm)']].values
     y = iris['sepal length (cm)'].values
     return X, y  
 
 #b = load_iris_data()
 #c = pd.DataFrame(b.data, columns=b.feature_names)
-#X, y = linear_train_data(b)     
+#X, y = linear_train_data(c) 
+
 
 # %%
 ''' 
@@ -120,7 +120,13 @@ függvény neve: train_linear_regression
 '''
 
 # %%
+
+
 def train_linear_regression(X_train, y_train):
+    reg = LinearRegression().fit(X_train, y_train)
+    return reg
+
+    """
     m = 0
     c = 0
 
@@ -142,7 +148,8 @@ def train_linear_regression(X_train, y_train):
         m = m - L * D_m  # Update m
         c = c - L * D_c  # Update c
 
-    return m*X_train + c
+    return y_pred
+    """
 
 #print(train_linear_regression(X_train,y_train))
 #m*X_train + c
@@ -158,7 +165,11 @@ függvény neve: train_logistic_regression
 '''
 
 # %%
+def train_logistic_regression(X_train, y_train):
+    clf = LogisticRegression().fit(X_train, y_train)
+    return clf
 
+#print(train_logistic_regression(X_train,y_train))
 
 # %%
 ''' 
@@ -172,11 +183,9 @@ függvény neve: predict
 
 # %%
 def predict(model, X_test):
-    pred = []
-    for X in X_test:
-        y_pred = model
-        pred.append(y_pred)
-    return y_pred
+    return model.predict(X_test)
+
+#predict(train_linear_regression(X_train,y_train),X_test)
 
 
 # %%
@@ -208,6 +217,7 @@ függvény neve: evaluate_model
 '''
 
 # %%
-
+def evaluate_model(y_test, y_pred): 
+    return mean_squared_error(y_test, y_pred)
 
 
