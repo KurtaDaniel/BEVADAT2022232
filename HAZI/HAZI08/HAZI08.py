@@ -24,7 +24,7 @@ def load_iris_data():
 
 #ir = load_iris_data()
 #ir['target']
-#ir['data']
+#ir
 
 
 # %%
@@ -57,13 +57,16 @@ függvény neve: linear_train_data
 
 # %%
 def linear_train_data(iris):
-    X = iris[['sepal width (cm)','petal length (cm)','petal width (cm)']].values
-    y = iris['sepal length (cm)'].values
+    df = pd.DataFrame(iris.data, columns=iris.feature_names)
+    X = df.copy()
+    X = X.drop(columns=["sepal length (cm)"]).values
+    y = df['sepal length (cm)'].values
     return X, y  
 
 #b = load_iris_data()
 #c = pd.DataFrame(b.data, columns=b.feature_names)
-#X, y = linear_train_data(c) 
+#X, y = linear_train_data(b) 
+#print(X)
 
 
 # %%
@@ -81,13 +84,13 @@ függvény neve: logistic_train_data
 # %%
 def logistic_train_data(iris):
     y = iris['target']
-    iris = pd.DataFrame(iris.data, columns=iris.feature_names)
-    X = iris[['sepal length (cm)','sepal width (cm)','petal length (cm)','petal width (cm)']].values
+    X = iris['data']
     return X, y
 
 #b = load_iris_data()
 #c = pd.DataFrame(b.data, columns=b.feature_names)
-#logistic_train_data(b)  
+#X,y = logistic_train_data(b) 
+
 
 # %%
 '''
@@ -126,33 +129,6 @@ def train_linear_regression(X_train, y_train):
     reg = LinearRegression().fit(X_train, y_train)
     return reg
 
-    """
-    m = 0
-    c = 0
-
-    L = 0.0001  # The learning Rate
-    epochs = 1000  # The number of iterations to perform gradient descent
-
-    n = float(len(X_train)) # Number of elements in X
-
-    # Performing Gradient Descent 
-    #losses = []
-    for i in range(epochs): 
-        y_pred = m*X_train + c  # The current predicted value of Y
-
-        residuals = y_train - y_pred
-        #loss = np.sum(residuals ** 2)
-        #losses.append(loss)
-        D_m = (-2/n) * sum(X_train * residuals)  # Derivative wrt m
-        D_c = (-2/n) * sum(residuals)  # Derivative wrt c
-        m = m - L * D_m  # Update m
-        c = c - L * D_c  # Update c
-
-    return y_pred
-    """
-
-#print(train_linear_regression(X_train,y_train))
-#m*X_train + c
 
 # %%
 '''
@@ -185,7 +161,7 @@ függvény neve: predict
 def predict(model, X_test):
     return model.predict(X_test)
 
-#predict(train_linear_regression(X_train,y_train),X_test)
+#pred = predict(train_linear_regression(X_train,y_train),X_test)
 
 
 # %%
@@ -204,7 +180,16 @@ függvény neve: plot_actual_vs_predicted
 '''
 
 # %%
+def plot_actual_vs_predicted(y_test, y_pred):
+    ret = plt.scatter(y_test,y_pred,)
 
+    plt.title("Actual vs Predicted Target Values")
+    plt.xlabel("Actual")
+    plt.ylabel("Predicted")
+    return ret
+
+
+#plot_actual_vs_predicted(y_test,pred)
 
 # %%
 ''' 
@@ -219,5 +204,7 @@ függvény neve: evaluate_model
 # %%
 def evaluate_model(y_test, y_pred): 
     return mean_squared_error(y_test, y_pred)
+
+#evaluate_model(y_test,pred)
 
 
