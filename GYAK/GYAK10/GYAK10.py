@@ -51,8 +51,7 @@ class Dense:
 
 class ReLU():
     def forward_pass(self, x):
-        x[x<0] = 0
-        return np.amax(x)
+        return np.where(x >= 0,x,0)
 
 #activation = ReLU()
 #asd = np.array([-21,-2])
