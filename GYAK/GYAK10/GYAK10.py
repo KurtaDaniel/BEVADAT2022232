@@ -37,11 +37,7 @@ class Dense:
         self.bias = np.random.random(size=(self.n_output))
 
     def forward_pass_a(self, X):
-      tmp = 0.0
-      for i in range(len(X[0])):
-          tmp += X[0][i] * self.W[i] 
-      tmp += self.bias
-      return tmp
+        return X @ self.W
 
 #input_data = np.array([[1, 2, 3, 4, 5]])
 #layer = Dense(3, n_input=5)
